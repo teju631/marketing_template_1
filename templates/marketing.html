@@ -15,7 +15,7 @@
     .controls {
       width: 100%;
       max-width: 1200px;
-      margin-bottom: 30px;
+      margin-bottom: 35px;
       background: #fff;
       padding: 15px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -33,6 +33,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.15);
       margin: 0 auto;
     }
+<<<<<<< Updated upstream
     .draggable {
       position: absolute;
       cursor: move;
@@ -163,6 +164,79 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
+=======
+    .draggable { position: absolute; cursor: move; }
+    .thumbnail-slider { display: flex; gap: 10px; overflow-x: auto; margin-top: 10px; padding-bottom: 30px; }
+    .thumbnail-slider img { width: 100px; height: 100px; object-fit: cover; border: 2px solid transparent; cursor: pointer; }
+    .thumbnail-slider img:hover { border-color: #007bff; }
+
+  #storeFooterName {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 12px;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.store-address,
+.store-mobile {
+  color: #000;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+
+.separator {
+  font-weight: normal;
+  font-size: 16px;
+  color: #0d0d0c;
+  margin: 0 8px;
+  vertical-align: middle;
+  opacity: 0.8;
+}
+
+.contact-logo {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-logo svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* .store-address { display: inline-block; color: #000; font-weight: bold; font-size: 14px; margin: 0; } */
+/* .separator { font-weight: bold; font-size: 20px; margin: 0 2px; line-height: 1; } */
+/* .contact-logo {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 6px;
+    } */
+    /* .contact-logo svg { width: 100%; height: 100%; display: block; } */
+    .contact-icon { width: 40px; height: 40px; background-color: black; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .contact-icon i { color: white; font-size: 20px; }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+>>>>>>> Stashed changes
 </head>
 <body>
   <h1>Marketing Template Editor</h1>
@@ -777,6 +851,7 @@ window.addEventListener("load", () => {
 function adjustFooterFontAndPosition() {
   const footers = document.querySelectorAll("#storeFooterName");
   footers.forEach(footer => {
+<<<<<<< Updated upstream
     const textLength = footer.innerText.trim().length;
 
     // Adjust font size
@@ -793,6 +868,32 @@ function adjustFooterFontAndPosition() {
       footer.style.bottom = "50px";     // shift upward
     } else {
       footer.style.bottom = "30px";     // default
+=======
+    let textLength = footer.innerText.trim().length;
+    textLength += footer.querySelectorAll(".contact-logo").length * 10;
+    textLength += (footer.innerHTML.match(/\|/g) || []).length;
+    
+    // Check if store address specifically is greater than 128 characters
+    const storeAddressElement = footer.querySelector(".store-address");
+    const storeAddressLength = storeAddressElement ? storeAddressElement.innerText.trim().length : 0;
+    
+    if (storeAddressLength > 128) {
+      footer.style.setProperty('font-size', '6px', 'important'); // Smaller font for very long addresses
+      // Also apply to store address specifically
+      if (storeAddressElement) {
+        storeAddressElement.style.setProperty('font-size', '6px', 'important');
+      }
+    } else if (textLength <= 88) {
+      footer.style.setProperty('font-size', '11px', 'important');
+      if (storeAddressElement) {
+        storeAddressElement.style.setProperty('font-size', '11px', 'important');
+      }
+    } else {
+      footer.style.setProperty('font-size', '11px', 'important');
+      if (storeAddressElement) {
+        storeAddressElement.style.setProperty('font-size', '9px', 'important');
+      }
+>>>>>>> Stashed changes
     }
   });
 }
@@ -802,8 +903,12 @@ function adjustFooterPosition() {
   const footers = document.querySelectorAll("#storeFooterName");
   footers.forEach(footer => {
     const textLength = footer.textContent.trim().length;
+<<<<<<< Updated upstream
     // Move slightly upward for long text
     footer.style.bottom = textLength > 128 ? "40px" : "30px";
+=======
+    footer.style.bottom = textLength > 128 ? "35px" :"22px";
+>>>>>>> Stashed changes
   });
 }
 
